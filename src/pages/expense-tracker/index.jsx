@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { useAddTransaction } from "../../hooks/useAddTransaction";
 import { useGetTransactions } from "../../hooks/useGetTransactions";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
-import { useDeleteTransaction } from "../../hooks/useDeleteTransaction"; // Import the hook
+import { useDeleteTransaction } from "../../hooks/useDeleteTransaction";
 
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
   const { transactions, transactionTotals } = useGetTransactions();
   const { name, profilePhoto } = useGetUserInfo();
-  const { deleteTransaction } = useDeleteTransaction(); // Use the hook
+  const { deleteTransaction } = useDeleteTransaction();
   
   const navigate = useNavigate();
 
@@ -105,7 +105,7 @@ export const ExpenseTracker = () => {
                     <th>Name</th>
                     <th>Category</th>
                     <th>Amount</th>
-                    <th>Action</th> {/* Add Action column */}
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,12 +113,12 @@ export const ExpenseTracker = () => {
                     const { id, description, transactionAmount, transactionType, date } = transaction;
                     return (
                       <tr key={id}>
-                        <td>{date}</td>
-                        <td>{description}</td>
-                        <td>{transactionType}</td>
-                        <td>${transactionAmount}</td>
-                        <td>
-                          <button onClick={() => deleteTransaction(id)}>Delete</button> {/* Add delete button */}
+                        <td data-label="Date">{date}</td>
+                        <td data-label="Name">{description}</td>
+                        <td data-label="Category">{transactionType}</td>
+                        <td data-label="Amount">${transactionAmount}</td>
+                        <td data-label="Action">
+                          <button onClick={() => deleteTransaction(id)}>Delete</button>
                         </td>
                       </tr>
                     );

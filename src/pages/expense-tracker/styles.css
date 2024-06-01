@@ -13,6 +13,7 @@ body {
     padding: 20px;
     max-width: 800px;
     margin: auto;
+    padding-top: 20px; /* Adjust as needed */
 }
 
 .expense-tracker h1 {
@@ -86,7 +87,8 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  padding: 20px;
 }
 
 .balance-summary {
@@ -97,6 +99,9 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
 }
 
 .balance {
@@ -142,19 +147,24 @@ body {
 
 .recent-transactions, .categories {
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.transactions-table {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .transactions-table table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .transactions-table th, .transactions-table td {
-  padding: 12px 15px;
+  padding: 8px;
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .transactions-table thead {
@@ -180,20 +190,56 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
+@media (max-width: 600px) {
+  .transactions-table table, .transactions-table thead, .transactions-table tbody, .transactions-table th, .transactions-table td, .transactions-table tr {
+    display: block;
+  }
+
+  .transactions-table thead {
+    display: none;
+  }
+
+  .transactions-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .transactions-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    position: relative;
+  }
+
+  .transactions-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+  }
+
+  .transactions-table td:last-child {
+    text-align: right;
+  }
+}
+
 .categories-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .category-card {
-  border: 5px solid #272401;
-  padding: 20px;
-  border-radius: 5px;
-  width: calc(33.333% - 20px);
+  flex: 1 1 calc(33.333% - 10px);
   box-sizing: border-box;
-  background-color: #dfe5f3;
-  color: #0d0d0d;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .add-transaction {
@@ -271,7 +317,7 @@ body {
     }
 
     .category-card {
-        width: calc(50% - 20px);
+        flex: 1 1 calc(50% - 10px);
     }
 }
 
@@ -290,7 +336,7 @@ body {
     }
 
     .category-card {
-        width: calc(50% - 20px);
+        flex: 1 1 100%;
     }
 }
 
@@ -333,5 +379,62 @@ body {
   .sign-out-button {
     font-size: 12px;
     padding: 3px 8px;
+  }
+}
+
+/* Ensure the top of the page is always visible */
+.expense-tracker {
+  padding-top: 20px; /* Adjust as needed */
+}
+
+/* Make the website highly responsive */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.balance-summary, .recent-transactions, .categories {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.transactions-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th, .transactions-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.categories-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-card {
+  flex: 1 1 calc(33.333% - 10px);
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .category-card {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 480px) {
+  .category-card {
+    flex: 1 1 100%;
   }
 }
